@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NORSU Admin Panel</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage" class="login-container">
+
+<div class="login-box">
+
+<h2>NORSU ADMIN LOGIN</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="loginMsg"></p>
+
+</div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div id="adminPanel" class="admin-panel">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="logo">
+<img src="https://upload.wikimedia.org/wikipedia/en/6/6c/Negros_Oriental_State_University_logo.png">
+<h3>NORSU</h3>
+</div>
+
+<ul>
+
+<li onclick="showDashboard()">Dashboard</li>
+<li onclick="logout()">Logout</li>
+
+</ul>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main">
+
+<h2>Student Registration</h2>
+
+<div class="form-box">
+
+<input type="text" id="name" placeholder="Student Name">
+
+<input type="text" id="course" placeholder="Course">
+
+<input type="number" id="age" placeholder="Age">
+
+<select id="year">
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+<option>4th Year</option>
+</select>
+
+<button onclick="addStudent()">Register Student</button>
+
+</div>
+
+
+<input type="text" id="search" placeholder="Search Student..." onkeyup="searchStudent()">
+
+
+<table id="studentTable">
+
+<thead>
+
+<tr>
+<th>Name</th>
+<th>Course</th>
+<th>Age</th>
+<th>Year</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
