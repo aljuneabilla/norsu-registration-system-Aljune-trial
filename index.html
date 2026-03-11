@@ -3,108 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <title>NORSU Admin Panel</title>
-<link rel="stylesheet" href="styles.css">
+<style>
+<link rel="stylesheet" href="style.css">
+    body { font-family: Arial, sans-serif; margin:0; }
+    .login-container, .admin-panel { display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .login-box { text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 10px #aaa; }
+    .login-box input { display: block; margin: 10px auto; padding: 8px; width: 80%; }
+    .login-box button { padding: 10px 20px; }
+    .admin-panel { display: none; }
+    .sidebar { width: 250px; background: #f0f0f0; padding: 20px; height: 100vh; box-sizing: border-box; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar ul li { margin: 15px 0; cursor: pointer; color: blue; }
+    .main { flex: 1; padding: 20px; }
+    .form-box input { display: block; margin: 5px 0; padding: 5px; width: 50%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    table, th, td { border: 1px solid black; }
+    th, td { padding: 8px; text-align: center; }
+    #loginMsg { margin-top: 10px; font-weight: bold; }
+</style>
 </head>
-
 <body>
 
-<!-- LOGIN PAGE -->
 
 <div id="loginPage" class="login-container">
-
-<div class="login-box">
-
-<h2>NORSU ADMIN LOGIN</h2>
-
-<input type="text" id="username" placeholder="Username">
-<input type="password" id="password" placeholder="Password">
-
-<button onclick="login()">Login</button>
-
-<p id="loginMsg"></p>
-
-</div>
-
+    <div class="login-box">
+        <img src="https://uploads.onecompiler.io/44ftrpxvw/44ftytk36/norsu.png" alt="NORSU Logo" width="150">
+        <h2>NORSU ADMIN LOGIN</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="loginMsg"></p>
+    </div>
 </div>
 
 
-<!-- ADMIN PANEL -->
+<div id="adminPanel" class="admin-panel" style="display:none; flex;">
+    <div class="sidebar">
+        <img src="https://uploads.onecompiler.io/44ftrpxvw/44ftytk36/norsu.png" alt="NORSU Logo" width="150">
+        <h2>NEGROS ORIENTAL STATE UNIVERSITY</h2>
+        <ul>
+            <li onclick="showDashboard()">Dashboard</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </div>
 
-<div id="adminPanel" class="admin-panel">
+    <div class="main">
+        <h1>Student Registration</h1>
+        <div class="form-box">
+            <input type="text" placeholder="Student ID" id="studentID">
+            <input type="text" placeholder="Student Name" id="studentName">
+            <input type="text" placeholder="Course" id="course">
+            <input type="text" placeholder="Subject" id="subject">
+            <h3>Grades</h3>
+            <input type="number" placeholder="Prelim Grade" id="prelim">
+            <input type="number" placeholder="Midterm Grade" id="midterm">
+            <input type="number" placeholder="Final Grade" id="final">
+            <button onclick="registerStudent()">Register Student</button>
+        </div>
 
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-
-<div class="logo">
-<img src="https://upload.wikimedia.org/wikipedia/en/6/6c/Negros_Oriental_State_University_logo.png">
-<h3>NORSU</h3>
+        <h2>Student Records</h2>
+        <input type="text" placeholder="Search Student..." id="search" onkeyup="searchStudent()">
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Subject</th>
+                    <th>Prelim</th>
+                    <th>Midterm</th>
+                    <th>Final</th>
+                    <th>Average Grade</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024-001</td>
+                    <td>Juan Dela Cruz</td>
+                    <td>BSIT</td>
+                    <td>Programming</td>
+                    <td>90</td>
+                    <td>88</td>
+                    <td>92</td>
+                    <td>90</td>
+                    <td><button onclick="editRow(this)">Edit</button> | <button onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>2024-002</td>
+                    <td>Maria Santos</td>
+                    <td>BSED</td>
+                    <td>Mathematics</td>
+                    <td>85</td>
+                    <td>87</td>
+                    <td>89</td>
+                    <td>87</td>
+                    <td><button onclick="editRow(this)">Edit</button> | <button onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<ul>
+<script>
+  
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const loginMsg = document.getElementById("loginMsg");
 
-<li onclick="showDashboard()">Dashboard</li>
-<li onclick="logout()">Logout</li>
+        if(username === "admin" && password === "1234") {
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("adminPanel").style.display = "flex";
+        } else {
+            loginMsg.textContent = "Invalid username or password!";
+            loginMsg.style.color = "red";
+        }
+    }
 
-</ul>
+    function logout() {
+        document.getElementById("adminPanel").style.display = "none";
+        document.getElementById("loginPage").style.display = "flex";
+        document.getElementById("loginMsg").textContent = "";
+    }
 
-</div>
+    function showDashboard() {
+        alert("Dashboard is currently active.");
+    }
 
+  
+    function searchStudent() {
+        const input = document.getElementById("search").value.toUpperCase();
+        const table = document.getElementById("studentTable");
+        const tr = table.getElementsByTagName("tr");
 
-<!-- MAIN CONTENT -->
+        for(let i = 1; i < tr.length; i++) {
+            let tdName = tr[i].getElementsByTagName("td")[1];
+            if(tdName) {
+                let txtValue = tdName.textContent || tdName.innerText;
+                tr[i].style.display = txtValue.toUpperCase().indexOf(input) > -1 ? "" : "none";
+            }
+        }
+    }
 
-<div class="main">
+    //
+    function registerStudent() {
+        const id = document.getElementById("studentID").value;
+        const name = document.getElementById("studentName").value;
+        const course = document.getElementById("course").value;
+        const subject = document.getElementById("subject").value;
+        const prelim = parseFloat(document.getElementById("prelim").value);
+        const midterm = parseFloat(document.getElementById("midterm").value);
+        const final = parseFloat(document.getElementById("final").value);
+        
+        if(!id || !name || !course || !subject || isNaN(prelim) || isNaN(midterm) || isNaN(final)){
+            alert("Please fill all fields correctly!");
+            return;
+        }
 
-<h2>Student Registration</h2>
+        const average = ((prelim + midterm + final)/3).toFixed(2);
+        const table = document.getElementById("studentTable").getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
 
-<div class="form-box">
+        newRow.innerHTML = `
+            <td>${id}</td>
+            <td>${name}</td>
+            <td>${course}</td>
+            <td>${subject}</td>
+            <td>${prelim}</td>
+            <td>${midterm}</td>
+            <td>${final}</td>
+            <td>${average}</td>
+            <td>
+                <button onclick="editRow(this)">Edit</button> | 
+                <button onclick="deleteRow(this)">Delete</button>
+            </td>
+        `;
 
-<input type="text" id="name" placeholder="Student Name">
+        document.getElementById("studentID").value = "";
+        document.getElementById("studentName").value = "";
+        document.getElementById("course").value = "";
+        document.getElementById("subject").value = "";
+        document.getElementById("prelim").value = "";
+        document.getElementById("midterm").value = "";
+        document.getElementById("final").value = "";
+    }
 
-<input type="text" id="course" placeholder="Course">
+    
+    function deleteRow(btn) {
+        const row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
 
-<input type="number" id="age" placeholder="Age">
+   
+    function editRow(btn) {
+        const row = btn.parentNode.parentNode;
+        document.getElementById("studentID").value = row.cells[0].innerText;
+        document.getElementById("studentName").value = row.cells[1].innerText;
+        document.getElementById("course").value = row.cells[2].innerText;
+        document.getElementById("subject").value = row.cells[3].innerText;
+        document.getElementById("prelim").value = row.cells[4].innerText;
+        document.getElementById("midterm").value = row.cells[5].innerText;
+        document.getElementById("final").value = row.cells[6].innerText;
 
-<select id="year">
-<option>1st Year</option>
-<option>2nd Year</option>
-<option>3rd Year</option>
-<option>4th Year</option>
-</select>
-
-<button onclick="addStudent()">Register Student</button>
-
-</div>
-
-
-<input type="text" id="search" placeholder="Search Student..." onkeyup="searchStudent()">
-
-
-<table id="studentTable">
-
-<thead>
-
-<tr>
-<th>Name</th>
-<th>Course</th>
-<th>Age</th>
-<th>Year</th>
-<th>Action</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
+        
+        row.parentNode.removeChild(row);
+    }
+</script>
 
 </body>
 </html>
