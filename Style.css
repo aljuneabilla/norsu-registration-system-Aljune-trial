@@ -1,112 +1,120 @@
-body{
-margin:0;
-font-family:Arial;
-background:#f4f6f9;
+/* === Global Styles === */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
 }
 
-.login-container{
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+/* === Login Container === */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.login-box{
-background:white;
-padding:30px;
-border-radius:10px;
-width:300px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-text-align:center;
+.login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    text-align: center;
 }
 
-input,select{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:5px;
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-button{
-background:#003366;
-color:white;
-border:none;
-padding:10px;
-border-radius:5px;
-cursor:pointer;
+button {
+    background: #003366;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-button:hover{
-background:#0055aa;
+button:hover {
+    background: #0055aa;
 }
 
-.admin-panel{
-display:none;
+/* === Admin Panel === */
+.admin-panel {
+    display: none;
 }
 
-.sidebar{
-width:220px;
-height:100vh;
-background:#003366;
-color:white;
-position:fixed;
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #003366;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
-.logo{
-text-align:center;
-padding:20px;
+.logo {
+    text-align: center;
+    padding: 20px;
 }
 
-.logo img{
-width:80px;
+.logo img {
+    width: 80px;
 }
 
-.sidebar ul{
-list-style:none;
-padding:0;
+.sidebar ul {
+    list-style: none;
+    padding: 0;
 }
 
-.sidebar ul li{
-padding:15px;
-cursor:pointer;
-border-top:1px solid rgba(255,255,255,0.2);
+.sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
 
-.sidebar ul li:hover{
-background:#0055aa;
+.sidebar ul li:hover {
+    background: #0055aa;
 }
 
-.main{
-margin-left:220px;
-padding:30px;
+/* === Main Content === */
+.main {
+    margin-left: 220px;
+    padding: 30px;
 }
 
-.form-box{
-background:white;
-padding:20px;
-border-radius:10px;
-margin-bottom:20px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+.form-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-background:white;
+/* === Table Styles === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
 }
 
-th,td{
-padding:10px;
-border:1px solid #ddd;
-text-align:center;
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
 }
 
-th{
-background:#003366;
-color:white;
+th {
+    background: #003366;
+    color: white;
 }
 
-#search{
-margin-bottom:15px;
+/* === Search Input === */
+#search {
+    margin-bottom: 15px;
 }
